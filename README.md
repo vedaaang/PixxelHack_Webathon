@@ -3,9 +3,6 @@
 **A modern, accessible healthcare website built for the PixxelHack Webathon**  
 *Theme: Healthcare Innovation | Tech Stack: HTML5, CSS3, JavaScript*
 
-![Medicare Demo](https://i.imgur.com/JK9yX8H.gif)  
-*Live Demo: [GitHub Pages Link](#) | Video Walkthrough: [Loom Video](#)*
-
 ## 🏆 Hackathon Highlights
 
 **Judging Criteria Addressed:**
