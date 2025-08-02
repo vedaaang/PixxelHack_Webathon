@@ -21,36 +21,55 @@
             overflow-x: hidden;
         }
 
-        /* Loader Styles */
-        .loader-container {
+        /* Enhanced Loader Styles */
+          .loader-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #000;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease;
+            background-color: #000;
+            pointer-events: none;
         }
-
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #fff;
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s linear infinite;
+        
+        .loader-content {
+            position: relative;
+            display: inline-block;
+            text-align: center;
         }
-
-        @keyframes spin {
+        
+        .loader-text {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .loader-line {
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            animation: lineGrow 1.5s ease-in-out infinite alternate;
+            transform-origin: center;
+        }
+        
+        @keyframes lineGrow {
+            0% {
+                transform: scaleX(0);
+            }
+            50% {
+                transform: scaleX(1);
+            }
             100% {
-                transform: rotate(360deg);
+                transform: scaleX(0);
             }
         }
 
+        /* Rest of your existing styles... */
         /* Navbar Styles */
         nav {
             position: fixed;
@@ -614,28 +633,6 @@
             transform: translateY(-3px);
         }
 
-        /* Ripple Effect */
-        .ripple-btn {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.7);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
-        }
-
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
         /* Footer */
         footer {
             background-color: #000;
@@ -713,7 +710,7 @@
         }
 
         /* Page Transition */
-        .page-transition {
+        .page-transition{
             position: fixed;
             top: 0;
             left: 0;
@@ -728,14 +725,29 @@
             pointer-events: none;
             transition: opacity 0.5s ease;
         }
-
+        
         .page-transition.active {
             opacity: 1;
         }
-
+        
+        .transition-content {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+        
         .transition-text {
             color: #fff;
             font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .transition-line {
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            animation: lineGrow 1.5s ease-in-out infinite;
+            transform-origin: center;
         }
 
         /* Responsive Styles */
@@ -796,6 +808,10 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .loader-text {
+                font-size: 3rem;
+            }
         }
 
         /* Scroll Reveal Animation */
@@ -812,14 +828,21 @@
     </style>
 </head>
 <body>
-    <!-- Loader -->
+    <!-- Enhanced Loader -->
+    <!-- Enhanced Loader -->
     <div class="loader-container">
-        <div class="loader"></div>
+        <div style="position: relative; display: inline-block;">
+            <div class="loader-text">MediCare</div>
+            <div class="loader-line"></div>
+        </div>
     </div>
 
     <!-- Page Transition -->
     <div class="page-transition">
-        <div class="transition-text">Medicare</div>
+            <div class="transition-content">
+                <div class="transition-text">MediCare</div>
+                <div class="transition-line"></div>
+            </div>
     </div>
 
     <!-- Navbar -->
@@ -931,7 +954,7 @@
         <div class="parallax-content reveal">
             <h2>Compassionate Care When You Need It Most</h2>
             <p>Our dedicated team is committed to providing exceptional healthcare services with empathy and expertise. We understand that every patient's journey is unique, and we're here to support you every step of the way.</p>
-            <button class="popup-btn ripple-btn">Request Appointment</button>
+            <button class="popup-btn">Request Appointment</button>
         </div>
     </section>
 
@@ -989,7 +1012,7 @@
         <div class="popup-container reveal">
             <h2 class="section-title">Need Immediate Assistance?</h2>
             <p style="margin-bottom: 30px;">Our team is ready to help you with any medical concerns or questions you may have. Don't hesitate to reach out.</p>
-            <button class="popup-btn ripple-btn">Contact Us Now</button>
+            <button class="popup-btn">Contact Us Now</button>
         </div>
     </section>
 
@@ -1101,7 +1124,7 @@
                 <p>Subscribe to our newsletter for health tips and updates.</p>
                 <form>
                     <input type="email" placeholder="Your Email" style="width: 100%; padding: 10px; margin-bottom: 10px; border: none; border-radius: 5px;">
-                    <button type="submit" class="ripple-btn" style="padding: 10px 20px; background-color: #fff; color: #000; border: none; border-radius: 5px; cursor: pointer;">Subscribe</button>
+                    <button type="submit" style="padding: 10px 20px; background-color: #fff; color: #000; border: none; border-radius: 5px; cursor: pointer;">Subscribe</button>
                 </form>
             </div>
         </div>
@@ -1120,21 +1143,22 @@
                 <input type="text" placeholder="Your Name" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
                 <input type="email" placeholder="Your Email" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
                 <textarea placeholder="Your Message" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; height: 120px;"></textarea>
-                <button type="submit" class="ripple-btn" style="padding: 12px 30px; background-color: #000; color: #fff; border: none; border-radius: 30px; cursor: pointer; transition: all 0.3s ease;">Send Message</button>
+                <button type="submit" style="padding: 12px 30px; background-color: #000; color: #fff; border: none; border-radius: 30px; cursor: pointer; transition: all 0.3s ease;">Send Message</button>
             </form>
         </div>
     </div>
 
     <script>
-        // Loader
+        // Enhanced Loader Functionality
         window.addEventListener('load', function() {
             const loader = document.querySelector('.loader-container');
+            
             setTimeout(() => {
                 loader.style.opacity = '0';
                 setTimeout(() => {
                     loader.style.display = 'none';
-                }, 500);
-            }, 1500);
+                }, 800);
+            }, 2000);
         });
 
         // Mobile Menu Toggle
@@ -1157,7 +1181,7 @@
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Show page transition
+                // Show page transition with loader style
                 const pageTransition = document.querySelector('.page-transition');
                 pageTransition.classList.add('active');
                 
@@ -1231,25 +1255,6 @@
                 popupOverlay.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
-        });
-
-        // Ripple Effect
-        document.querySelectorAll('.ripple-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const x = e.clientX - e.target.getBoundingClientRect().left;
-                const y = e.clientY - e.target.getBoundingClientRect().top;
-                
-                const ripple = document.createElement('span');
-                ripple.classList.add('ripple');
-                ripple.style.left = `${x}px`;
-                ripple.style.top = `${y}px`;
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
         });
 
         // Scroll Reveal Animation
